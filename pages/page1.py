@@ -1,20 +1,22 @@
 import streamlit as st
-import random
+import math
 
-st.title("じゃんけんゲーム")
+st.title("自動通分アプリ")
 
-st.write("最初はグー。じゃんけん...")
+num1 = st.number_input("一つ目の分数の分子を入力", value=0)
+num2 = st.number_input("一つ目の分数の分母を入力", value=1)
+num3 = st.number_input("二つ目の分数の分子を入力", value=0)
+num4 = st.number_input("二つ目の分数の分母を入力", value=1)
 
-janken_start = st.button("ポン！")
+def lcm(x, y):
+    return abs(x * y) // math.gcd(x, y)
 
-if janken_start:
-    hand = random.randint(1,3)
+if num2 == num4:
+    st.write("分母が等しいため通分の必要はありません")
+else:
+    common_denominator = lcm(int(num2), int(num4))
 
-    if hand == 1:
-        st.write("グー")
+    new_num1 = int(num1) * (common_denominator // int(num2))
+    new_num3 = int(num3) * (common_denominator // int(num4))
     
-    elif hand == 2:
-        st.write("チョキ")
-
-    else:
-        st.write("パー")
+    st.write(f"{num1}/{num2} , {num3}/{num4} = {new_num1}/{common_denominator} , {new_num3}/{common_denominator}")
