@@ -1,7 +1,7 @@
 import streamlit as st
 import random
 
-st.title("おまけ じゃんけんゲーム")
+st.title("じゃんけんゲーム")
 
 st.write("最初はグー。じゃんけん...")
 
